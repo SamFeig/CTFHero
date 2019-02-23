@@ -1,6 +1,8 @@
 var redis = require('redis');
 var client = redis.createClient();
 var fs = require('fs')
+var unzip = require('unzip')
+const { spawn } = require('child_process');
 // var client = redis.createClient(port, host); // if we need to use a custom host and port
 
 
@@ -20,7 +22,7 @@ module.exports = {
         response.send("data successfully inserted")
     },
     
-    getData: function(key,response){
+    getZipFile: function(key,response){
         client.get(key, function (error, result) {
             if (error) {
                 console.log(error);
@@ -34,5 +36,30 @@ module.exports = {
             response.write(file, 'binary');
             response.end();
         });
+    },
+
+    getWebChallenge: function(key, response){
+        client.get(key, function(error,result){
+            if(error){
+                console.log(error)
+                throw error;
+            }
+            console.log('Query result ' + result);
+            // do something with the resulting data
+            const docker = spawn('docker', ['build','-f', key + '/Dockerfile']);
+
+            docker.stdout.on('data', (data) => {
+                console.log(`stdout: ${data}`);
+            });
+
+            docker.stderr.on('data', (data) => {
+                console.log(`stderr: ${data}`);
+            });
+
+            docker.on('close', (code) => {
+                console.log(`child process exited with code ${code}`);
+            });
+
+        })
     }
 }

@@ -32,13 +32,16 @@ app.get('/', (request, response) => {
     })
   })
 
-app.post('/getFile', (request,response) => {
-  redis.getData(request.body.key,response)
+app.post('/getZipFile', (request,response) => {
+  redis.getZipFile(request.body.key,response)
+})
+
+app.post('/getWebChallenge', (request,response) => {
+  redis.getWebChallenge(request.body.key,response)
 })
 
 app.post('/insertpath', (request,response) => {
   redis.setData(request.body.key,request.body.data,response)
-
 })
 
 app.listen(port, (err) => {
