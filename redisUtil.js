@@ -46,7 +46,7 @@ module.exports = {
             }
             console.log('Query result ' + result);
             // do something with the resulting data
-            const docker = spawn('docker', ['build','-f', key + '/Dockerfile']);
+            const docker = spawn('docker', ['build', key]);
 
             docker.stdout.on('data', (data) => {
                 console.log(`stdout: ${data}`);
