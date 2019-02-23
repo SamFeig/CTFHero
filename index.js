@@ -6,6 +6,17 @@ const redis = require('./redisUtil')
 const app = express()
 const port = 3000
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+
+app.post("/", function (req, res) {
+    console.log(req.body.user.name)
+});
+
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',
   extname: '.hbs',
@@ -21,12 +32,13 @@ app.get('/', (request, response) => {
     })
   })
 
-app.get('/testurl/id', (request,response) => {
-  redis.getData('id',response)
+app.post('/getFile', (request,response) => {
+  redis.getData(request.body.key,response)
 })
 
-app.get('/testurl/id1', (request,response) => {
-  redis.setData('id','/home/markwilmes/.gdbinit')
+app.post('/insertpath', (request,response) => {
+  redis.setData(request.body.key,request.body.data,response)
+
 })
 
 app.listen(port, (err) => {

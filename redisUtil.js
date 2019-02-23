@@ -14,9 +14,10 @@ client.on('error', function (err) {
 
 
 module.exports = {
-    setData: function(key,data){
+    setData: function(key,data,response){
         client.set(key,data,redis.print);
         console.log("inserted data " + data + " at key " + key)
+        response.send("data successfully inserted")
     },
     
     getData: function(key,response){
