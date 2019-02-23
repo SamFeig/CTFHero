@@ -14,6 +14,7 @@ client.on('error', function (err) {
 
 function setData(key,data){
     client.set(key,data,redis.print);
+    console.log("inserted data " + data + " at key " + key)
 }
 
 function getData(key){
@@ -22,9 +23,7 @@ function getData(key){
             console.log(error);
             throw error;
         }
-        console.log('Query result' + result);
+        console.log('Query result ' + result);
         // do something with the resulting data
     });
 }
-
-
