@@ -2,7 +2,7 @@ var redis = require('redis');
 var client = redis.createClient();
 var fs = require('fs')
 //var unzip = require('unzip')
-const { spawn } = require('child_process');
+const cp = require('child_process');
 // var client = redis.createClient(port, host); // if we need to use a custom host and port
 
 
@@ -46,7 +46,7 @@ module.exports = {
             }
             console.log('Query result ' + result);
             // do something with the resulting data
-            const docker = spawn('docker', ['build', key]);
+            const docker = cp.spawn('docker', ['build', key]);
 
             docker.stdout.on('data', (data) => {
                 console.log(`stdout: ${data}`);
