@@ -90,8 +90,8 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="/practice/2015-crypto-300A">2015-crypto-300A</a>
     <a href="/practice/2016-Forensics-150">2016-Forensics-150</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+    <a href="/practice/2016-Grab-Bag-150">2016-Grab-Bag-150</a>
+    <a href="/practice/2018-crypto-flipping-bits">2018-crypto-flipping-bits</a>
   </div>
 
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
@@ -112,7 +112,7 @@
     <div class="jumbotron">
     <div class="container">
       <h1 class="post-title-main" itemprop="name headline">Practice</h1>
-      <center><h3>2016 Forensics 150</h3></center>
+      <center><h3>2018-crypto-flipping-bits</h3></center>
     <center>  <h4 class="post-title-main" itemprop="name headline"></h4></center>
     </div>
     </div>
@@ -120,52 +120,37 @@
   <!-- Main -->
   <center>
   <div id="main", class="container", style="text-allign: center;">
-  <script src="/scripts/database.js" type="text/javascript"></script>
       <div, class="container">
-        <h4>##Methods of Hacking##</h4>
+       <h4>##Description##</h4>
+ <p> Disabling C2 requires cracking a RSA message. You have two ciphertexts. The public key is (e1, n).<br>
+
+Fortunately (this time), space rabiation caused some bit flibs and the second ciphertext was encrypted with a faulty public key <br>(e2, n). Can you recover the plaintexts? </p>
+
+<code class="inlinecode", style="overflow-wrap: normal">ct1 = 139817653881450839977033336822439564341483069547741207608456710247235836183411485289520633166535889281384305240407<br>1784154352856832667429367722844965128142276221685309852942581474015657551362051324500557650898210336059276138029300624452<br>8169193632346512170599896471850340765607466109228426538780591853882736654<br>
+ct2 = 794599490169244428569590593253908947232325862759259318989294459383381232162782713339020628725650582051366277577130<br>5195408396887464458190237118226658824765385761602988145310038779711155967739201741529858013649620489801679718038640217196<br>8931958365160589774450964944023720256848731202333789801071962338635072065<br>
+e1 = 13<br>
+e2 =  15<br>
+modulus =  1031090659023346202261011620087939635042560279391170200918767990396908019447356042590186555348601832050310690832542<br>902585772916052870535387522802319598574658532288517147868872949618730062341530791872162855168238321024241109340629542723<br>46111907571393964363630079343598511602013316604641904852018969178919051627<br><br>
+You have two captured ciphertexts. The public key is (e1, n). But,
+due to a transient bit flip, the second ciphertext was encrypted with a faulty
+public key: (e2, n). Recover the plaintexts.
+(The algorithm is RSA.)</code><br><br>
+
 <p>
-* Figure out Hashes of username/password and put in Username: iamahacker Password: iamnotascriptkiddy<br>
-* Send Intent of specific string to cause Broadcast receiver to print flag<br>
-* Figure out how the app is taking the decimal ASCII converting it to HEX and then to string and formulate the flag
-<br><br>
-<h4>##Installation/start-up##</h4>
-1. APK emulator (Android Studio works)<br>
-2. Download sdk with API v15<br>
-3. Download apktools
-<br><br>
-     <code class="inlinecode">brew install apktool</code>
-<br><br>
-4. download jd gui installer
-<br><br>
-<h4>##Solving##</h4>
- 1. Once everything is loaded you should be able to unzip and decode the Authenticator.apk file. (Recommended: copy Authenticator.apk to a temp file)
-<br><br>
-          <code class="inlinecode">unzip Authenticator.apk</code><br>
-          wait....<br>
-          <code class="inlinecode">apktool d Authenticator.apk</code>
-<br><br>
-  2. Make sure all sdk packages are loaded properly and start Android Studios AVD Manager from terminal. Then create a virtual device (the smaller the device the more likely it will load).
-<br><br>
-         <code class="inlinecode">android avd</code>
-<br><br>
-  3. Next the apk may already be loaded on the virtual device so open it up and find authenticator in the apps.<br>
-  4. Then in a new page in terminal find where you unziped the apk and convert the classes.dex file to a jar
-<br><br>
-          <code class="inlinecode">d2j-dex2jar classes.dex</code>
-<br><br>
-  5. Open classes.dex2jar.jar file in jd-gui and find last function to see the word needed to send in the intent broadcast.(AUTHENTICATE)<br>
-  6. Next go through the AndroidManifest.xml to find the first portion of the intent. (org.ctf.authenticator.authenticate)<br>
-  7. Send the intent while the virtual device is in the same view so you can see the flag appear.
-<br><br>
-          <code class="inlinecode">adb shell am broadcast -a org.ctf.authenticator.authenticate</code>
-<br><br>
-<h4>##Another way to solve:##</h4>
-Go into Authenticator/res/values and find the user and password strings.<br>
-   * The strings are encrypted but can be decrypted and then used as the username and password when the app is launched.</p>
-<br><br>
-      <code class="inlinecode">The Key is“e1192d27265d0754f9482fbbe0b8bb165c4f2144”</code>
-      </div>
-</div></center>
+<h4>##Solution##</h4>
+We are provided with two encodings of the same plaintext, using the same modulus but different public keys.<br>
+
+Further, we have<code class="inlinecode"> `gcd(e1, e2) = gcd(15, 13) = 1`.</code>This means that some values `u` and `v`,  so that <code class="inlinecode">`u*e1 + v*e2 = 1`</code> holds, exist. We can easily find `u` and `v` thanks to the extended euclidian algorithm.<br>
+
+Now we notice that<code class="inlinecode">`ct1 = M^e1 (mod n)` and `ct2 = M^e2 (mod n)`</code>. We compute:<br>
+    <code class="inlinecode">`ct1^u * ct2^v = M^(u*e1) * M^(v*e2) = M^(u*e1 + v*e2) = M`</code><br>
+
+Once we have `M`, all what remains to do is to take its binary representation and decode it as an ASCII string.<br>
+</p>
+
+<code class="inlinecode">flag-54d3db5c1efcd7afa579c37bcb560ae0</code>
+
+  </div></center>
 
 <!-- Footer -->
 </section>

@@ -48,6 +48,12 @@ app.get('/practice/2015-crypto-300A', (request, response) => {
 app.get('/practice/2016-Forensics-150', (request, response) => {
   response.sendFile(__dirname + "/public/_site/practice/2016-Forensics-150.html")
 })
+app.get('/practice/2016-Grab-Bag-150', (request, response) => {
+  response.sendFile(__dirname + "/public/_site/practice/2016-Grab-Bag-150.html")
+})
+app.get('/practice/2018-crypto-flipping-bits', (request, response) => {
+  response.sendFile(__dirname + "/public/_site/practice/2018-crypto-flipping-bits.html")
+})
 
 app.post('/getZipFile', (request,response) => {
   redis.getZipFile(request.body.key,response)

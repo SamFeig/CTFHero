@@ -112,7 +112,7 @@
     <div class="jumbotron">
     <div class="container">
       <h1 class="post-title-main" itemprop="name headline">Practice</h1>
-      <center><h3>2016 Forensics 150</h3></center>
+      <center><h3>2016-Grab-Bag-150</h3></center>
     <center>  <h4 class="post-title-main" itemprop="name headline"></h4></center>
     </div>
     </div>
@@ -120,52 +120,19 @@
   <!-- Main -->
   <center>
   <div id="main", class="container", style="text-allign: center;">
-  <script src="/scripts/database.js" type="text/javascript"></script>
       <div, class="container">
-        <h4>##Methods of Hacking##</h4>
-<p>
-* Figure out Hashes of username/password and put in Username: iamahacker Password: iamnotascriptkiddy<br>
-* Send Intent of specific string to cause Broadcast receiver to print flag<br>
-* Figure out how the app is taking the decimal ASCII converting it to HEX and then to string and formulate the flag
-<br><br>
-<h4>##Installation/start-up##</h4>
-1. APK emulator (Android Studio works)<br>
-2. Download sdk with API v15<br>
-3. Download apktools
-<br><br>
-     <code class="inlinecode">brew install apktool</code>
-<br><br>
-4. download jd gui installer
-<br><br>
-<h4>##Solving##</h4>
- 1. Once everything is loaded you should be able to unzip and decode the Authenticator.apk file. (Recommended: copy Authenticator.apk to a temp file)
-<br><br>
-          <code class="inlinecode">unzip Authenticator.apk</code><br>
-          wait....<br>
-          <code class="inlinecode">apktool d Authenticator.apk</code>
-<br><br>
-  2. Make sure all sdk packages are loaded properly and start Android Studios AVD Manager from terminal. Then create a virtual device (the smaller the device the more likely it will load).
-<br><br>
-         <code class="inlinecode">android avd</code>
-<br><br>
-  3. Next the apk may already be loaded on the virtual device so open it up and find authenticator in the apps.<br>
-  4. Then in a new page in terminal find where you unziped the apk and convert the classes.dex file to a jar
-<br><br>
-          <code class="inlinecode">d2j-dex2jar classes.dex</code>
-<br><br>
-  5. Open classes.dex2jar.jar file in jd-gui and find last function to see the word needed to send in the intent broadcast.(AUTHENTICATE)<br>
-  6. Next go through the AndroidManifest.xml to find the first portion of the intent. (org.ctf.authenticator.authenticate)<br>
-  7. Send the intent while the virtual device is in the same view so you can see the flag appear.
-<br><br>
-          <code class="inlinecode">adb shell am broadcast -a org.ctf.authenticator.authenticate</code>
-<br><br>
-<h4>##Another way to solve:##</h4>
-Go into Authenticator/res/values and find the user and password strings.<br>
-   * The strings are encrypted but can be decrypted and then used as the username and password when the app is launched.</p>
-<br><br>
-      <code class="inlinecode">The Key is“e1192d27265d0754f9482fbbe0b8bb165c4f2144”</code>
-      </div>
-</div></center>
+        <p>
+        This challenge involves an hidden image that is split across 2 images that are conjoined together<br>
+Information on the cryptography can be found <a href="http://www.datagenetics.com/blog/november32013/">here</a><br><br>
+
+<img src="https://github.com/mitre-cyber-academy/2016-Grab-Bag-150/blob/master/newoutImage.png?raw=true" style="background-color: white;"><br><br>
+
+To solve just cut image in half down the middle and place the 2 keys on top of each other. Another key will magically appear:
+</p>
+
+<code class="inlinecode">MCA-47DCDE2</code>
+
+  </div></center>
 
 <!-- Footer -->
 </section>
