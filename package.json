@@ -23,7 +23,8 @@
   "homepage": "https://github.com/SamFeig/Hacking4noobs#readme",
   "dependencies": {
     "express": "*",
+    "express-handlebars": "*",
     "redis": "*",
-    "express-handlebars": "*"
+    "redisscan": "^2.0.0"
   }
 }
