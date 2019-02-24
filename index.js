@@ -26,19 +26,19 @@ app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, 'views'))
 
 app.get('/', (request, response) => {
-  response.sendfile(__dirname + "/public/index.html")
+  response.sendFile(__dirname + "/public/index.html")
 })
 
 app.get('/compete', (request, response) => {
-  response.sendfile(__dirname + "/public/_site/compete/index.html")
+  response.sendFile(__dirname + "/public/_site/compete/index.html")
 })
 
 app.get('/archive', (request, response) => {
-  response.sendfile(__dirname + "/public/_site/archive/index.html")
+  response.sendFile(__dirname + "/public/_site/archive/index.html")
 })
 
 app.get('/practice', (request, response) => {
-  response.sendfile(__dirname + "/public/_site/practice/index.html")
+  response.sendFile(__dirname + "/public/_site/practice/index.html")
 })
 
 app.post('/getZipFile', (request,response) => {

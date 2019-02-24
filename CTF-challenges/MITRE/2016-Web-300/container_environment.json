@@ -1,0 +1,1 @@
+{"POSTGRES_PORT_5432_TCP_PORT": "5432", "HOSTNAME": "5e4856e86dfc", "POSTGRES_PORT_5432_TCP_ADDR": "postgres", "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin", "no_proxy": "*.local, 169.254/16, *.mitre.org", "RAILS_ENV": "production", "DEBIAN_FRONTEND": "noninteractive"}

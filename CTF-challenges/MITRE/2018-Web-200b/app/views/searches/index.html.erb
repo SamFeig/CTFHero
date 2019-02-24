@@ -1,0 +1,32 @@
+<div class="container">
+
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <h1>People Search</h1>
+
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" id="search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" href="<%= root_path %>" id="search_submit">Search</button>
+  </form>
+</nav>
+
+    <table class="table table-hover" id='usertable'>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Profile</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr id='#userNum<%= user.id %>'>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.first %></td>
+            <td><%= user.last %></td>
+            <td><%= link_to 'View Profile', user_path(user) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

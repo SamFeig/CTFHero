@@ -1,0 +1,13 @@
+web:
+  build: ./webserver
+  ports:
+    - "80:80"
+  links:
+    - db
+db:
+  image: mysql:5.6
+  container_name: mysql-sql-injection
+  volumes:
+    - ./data/mysql:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=thA4RaT3stubaz2w2ethAnu4ruquphev

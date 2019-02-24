@@ -1,0 +1,252 @@
+We have captured network traffic from the wire interacting with the GE ML800 web admin interface.
+Within this session we have performed a switch firmware upgrade. This session is in HTTPS, but the 
+firmware upgrade happens over FTP, so we are able to see the firmware file in clear text.
+
+Instead, of just boring you with the vuln description, let's make this blog a tutorial about carving private keys
+ out of firmware. 
+
+First, we use tcptrace to carve out the files (All hail Ostermann!):
+
+tcptrace -n -e firmware-upgrade.pcapng 
+
+1 arg remaining, starting with 'firmware-upgrade.pcapng'
+Ostermann's tcptrace -- version 6.6.7 -- Thu Nov  4, 2004
+
+5713 packets seen, 5711 TCP packets traced
+elapsed wallclock time: 0:00:00.036386, 157010 pkts/sec analyzed
+trace file elapsed time: 0:28:45.931053
+TCP connection info:
+  1: 192.168.0.97:57277 - 192.168.0.12:23 (a2b)      60>   34<  (complete)
+  2: 192.168.0.97:48541 - 192.168.0.12:80 (c2d)       5>    4<  (complete)
+  3: 192.168.0.97:48883 - 192.168.0.12:443 (e2f)      9>    8<  (complete)  (reset)
+  4: 192.168.0.97:48884 - 192.168.0.12:443 (g2h)    106>  202<  (complete)  (reset)
+  5: 192.168.0.97:48885 - 192.168.0.12:443 (i2j)      9>    7<  (complete)  (reset)
+  6: 192.168.0.97:48886 - 192.168.0.12:443 (k2l)      9>    7<  (complete)  (reset)
+  7: 192.168.0.97:48887 - 192.168.0.12:443 (m2n)      9>    7<  (complete)  (reset)
+  8: 192.168.0.97:48888 - 192.168.0.12:443 (o2p)     29>   36<  (complete)  (reset)
+  9: 192.168.0.97:48889 - 192.168.0.12:443 (q2r)     10>    6<  (complete)
+ 10: 192.168.0.97:48890 - 192.168.0.12:443 (s2t)      9>    6<  (complete)
+ 11: 192.168.0.97:48891 - 192.168.0.12:443 (u2v)     11>   10<  (complete)  (reset)
+ 12: 192.168.0.97:48892 - 192.168.0.12:443 (w2x)     12>   12<  (complete)  (reset)
+ 13: 192.168.0.97:48893 - 192.168.0.12:443 (y2z)      9>    6<  (complete)
+ 14: 192.168.0.97:48894 - 192.168.0.12:443 (aa2ab)    9>    7<  (complete)  (reset)
+ 15: 192.168.0.97:48895 - 192.168.0.12:443 (ac2ad)   23>   35<  (complete)  (reset)
+ 16: 192.168.0.97:48896 - 192.168.0.12:443 (ae2af)   11>   12<  (complete)  (reset)
+ 17: 192.168.0.97:48897 - 192.168.0.12:443 (ag2ah)    9>    7<  (complete)  (reset)
+ 18: 192.168.0.97:48898 - 192.168.0.12:443 (ai2aj)   10>    9<  (complete)  (reset)
+ 19: 192.168.0.97:48899 - 192.168.0.12:443 (ak2al)    9>    7<  (complete)  (reset)
+ 20: 192.168.0.97:48900 - 192.168.0.12:443 (am2an)    8>    5<  (complete)
+ 21: 192.168.0.97:48901 - 192.168.0.12:443 (ao2ap)    9>    6<  (complete)
+ 22: 192.168.0.97:48902 - 192.168.0.12:443 (aq2ar)    9>    6<  (complete)
+ 23: 192.168.0.97:48903 - 192.168.0.12:443 (as2at)   10>    9<  (complete)  (reset)
+ 24: 192.168.0.97:48904 - 192.168.0.12:443 (au2av)    9>    8<  (complete)  (reset)
+ 25: 192.168.0.97:48905 - 192.168.0.12:443 (aw2ax)   11>   11<  (complete)  (reset)
+ 26: 192.168.0.97:48907 - 192.168.0.12:443 (ay2az)   11>   11<  (complete)  (reset)
+ 27: 192.168.0.97:48908 - 192.168.0.12:443 (ba2bb)   10>   10<  (complete)  (reset)
+ 28: 192.168.0.97:48909 - 192.168.0.12:443 (bc2bd)   11>   11<  (complete)  (reset)
+ 29: 192.168.0.97:48910 - 192.168.0.12:443 (be2bf)    9>    7<  (complete)  (reset)
+ 30: 192.168.0.97:48913 - 192.168.0.12:443 (bg2bh)    9>    7<  (complete)  (reset)
+ 31: 192.168.0.97:48961 - 192.168.0.12:443 (bi2bj)    9>    7<  (complete)  (reset)
+ 32: 192.168.0.12:1024 - 192.168.0.97:21 (bk2bl)     11>   13<  (complete)
+ 33: 192.168.0.97:20 - 192.168.0.12:1025 (bm2bn)   1356>  971<  (complete)
+ 34: 192.168.0.97:48964 - 192.168.0.12:443 (bo2bp)   14>    6<  (complete)  (reset)
+ 35: 192.168.0.97:48965 - 192.168.0.12:443 (bq2br)    2>    1<  (reset)
+ 36: 192.168.0.97:48966 - 192.168.0.12:443 (bs2bt)    2>    1<  (reset)
+ 37: 192.168.0.97:48967 - 192.168.0.12:443 (bu2bv)    1>    1<  (reset)
+ 38: 192.168.0.97:48968 - 192.168.0.12:443 (bw2bx)    1>    1<  (reset)
+ 39: 192.168.0.97:48969 - 192.168.0.12:443 (by2bz)    1>    1<  (reset)
+ 40: 192.168.0.97:48970 - 192.168.0.12:443 (ca2cb)    1>    1<  (reset)
+ 41: 192.168.0.97:48971 - 192.168.0.12:443 (cc2cd)    1>    1<  (reset)
+ 42: 192.168.0.97:48972 - 192.168.0.12:443 (ce2cf)    1>    1<  (reset)
+ 43: 192.168.0.97:48973 - 192.168.0.12:443 (cg2ch)    1>    1<  (reset)
+ 44: 192.168.0.97:48974 - 192.168.0.12:443 (ci2cj)    1>    1<  (reset)
+ 45: 192.168.0.97:48975 - 192.168.0.12:443 (ck2cl)    9>    7<  (complete)  (reset)
+ 46: 192.168.0.97:48994 - 192.168.0.12:443 (cm2cn)    9>    8<  (complete)  (reset)
+ 47: 192.168.0.97:48995 - 192.168.0.12:443 (co2cp)  106>  202<  (complete)  (reset)
+ 48: 192.168.0.97:48996 - 192.168.0.12:443 (cq2cr)   10>    8<  (complete)  (reset)
+ 49: 192.168.0.97:48997 - 192.168.0.12:443 (cs2ct)    9>    7<  (complete)  (reset)
+ 50: 192.168.0.97:48998 - 192.168.0.12:443 (cu2cv)   25>   35<  (complete)  (reset)
+ 51: 192.168.0.97:48999 - 192.168.0.12:443 (cw2cx)    8>    5<  (complete)
+ 52: 192.168.0.97:49000 - 192.168.0.12:443 (cy2cz)    9>    6<  (complete)
+ 53: 192.168.0.97:49001 - 192.168.0.12:443 (da2db)   10>   10<  (complete)  (reset)
+ 54: 192.168.0.97:49002 - 192.168.0.12:443 (dc2dd)   11>   12<  (complete)  (reset)
+ 55: 192.168.0.97:49003 - 192.168.0.12:443 (de2df)    8>    6<  (complete)
+ 56: 192.168.0.97:49004 - 192.168.0.12:443 (dg2dh)    9>    7<  (complete)  (reset)
+ 57: 192.168.0.97:49005 - 192.168.0.12:443 (di2dj)   28>   35<  (complete)  (reset)
+ 58: 192.168.0.97:49006 - 192.168.0.12:443 (dk2dl)   11>   12<  (complete)  (reset)
+ 59: 192.168.0.97:49007 - 192.168.0.12:443 (dm2dn)    9>    7<  (complete)  (reset)
+ 60: 192.168.0.97:49008 - 192.168.0.12:443 (do2dp)   10>    9<  (complete)  (reset)
+ 61: 192.168.0.97:49009 - 192.168.0.12:443 (dq2dr)    9>    7<  (complete)  (reset)
+ 62: 192.168.0.97:49010 - 192.168.0.12:443 (ds2dt)    9>    5<  (complete)
+ 63: 192.168.0.97:49011 - 192.168.0.12:443 (du2dv)    9>    6<  (complete)
+ 64: 192.168.0.97:49012 - 192.168.0.12:443 (dw2dx)    9>    6<  (complete)
+ 65: 192.168.0.97:49013 - 192.168.0.12:443 (dy2dz)   10>    9<  (complete)  (reset)
+ 66: 192.168.0.97:49014 - 192.168.0.12:443 (ea2eb)   10>    8<  (complete)  (reset)
+ 67: 192.168.0.97:49015 - 192.168.0.12:443 (ec2ed)   11>   11<  (complete)  (reset)
+ 68: 192.168.0.97:49016 - 192.168.0.12:443 (ee2ef)   11>   11<  (complete)  (reset)
+ 69: 192.168.0.97:49017 - 192.168.0.12:443 (eg2eh)   11>   11<  (complete)  (reset)
+ 70: 192.168.0.97:49018 - 192.168.0.12:443 (ei2ej)   11>   11<  (complete)  (reset)
+ 71: 192.168.0.97:49019 - 192.168.0.12:443 (ek2el)   11>   11<  (complete)  (reset)
+ 72: 192.168.0.97:49020 - 192.168.0.12:443 (em2en)   11>   11<  (complete)  (reset)
+ 73: 192.168.0.97:49023 - 192.168.0.12:443 (eo2ep)   11>   11<  (complete)  (reset)
+ 74: 192.168.0.97:49024 - 192.168.0.12:443 (eq2er)   11>   11<  (complete)  (reset)
+ 75: 192.168.0.97:49025 - 192.168.0.12:443 (es2et)   11>   11<  (complete)  (reset)
+ 76: 192.168.0.97:49026 - 192.168.0.12:443 (eu2ev)   11>   11<  (complete)  (reset)
+ 77: 192.168.0.97:49027 - 192.168.0.12:443 (ew2ex)   11>   11<  (complete)  (reset)
+ 78: 192.168.0.97:49028 - 192.168.0.12:443 (ey2ez)   11>   11<  (complete)  (reset)
+ 79: 192.168.0.97:49029 - 192.168.0.12:443 (fa2fb)   11>   11<  (complete)  (reset)
+ 80: 192.168.0.97:49031 - 192.168.0.12:443 (fc2fd)   11>   11<  (complete)  (reset)
+ 81: 192.168.0.97:49032 - 192.168.0.12:443 (fe2ff)   11>   11<  (complete)  (reset)
+ 82: 192.168.0.97:49033 - 192.168.0.12:443 (fg2fh)   11>   11<  (complete)  (reset)
+ 83: 192.168.0.97:49034 - 192.168.0.12:443 (fi2fj)   11>   11<  (complete)  (reset)
+ 84: 192.168.0.97:49037 - 192.168.0.12:443 (fk2fl)   11>   11<  (complete)  (reset)
+ 85: 192.168.0.97:49038 - 192.168.0.12:443 (fm2fn)   11>   11<  (complete)  (reset)
+ 86: 192.168.0.97:49039 - 192.168.0.12:443 (fo2fp)   11>   11<  (complete)  (reset)
+ 87: 192.168.0.97:49040 - 192.168.0.12:443 (fq2fr)   11>   11<  (complete)  (reset)
+ 88: 192.168.0.97:49041 - 192.168.0.12:443 (fs2ft)   11>   11<  (complete)  (reset)
+ 89: 192.168.0.97:49042 - 192.168.0.12:443 (fu2fv)   11>   11<  (complete)  (reset)
+ 90: 192.168.0.97:49043 - 192.168.0.12:443 (fw2fx)   11>   11<  (complete)  (reset)
+ 91: 192.168.0.97:49044 - 192.168.0.12:443 (fy2fz)   11>   11<  (complete)  (reset)
+ 92: 192.168.0.97:49045 - 192.168.0.12:443 (ga2gb)   11>   11<  (complete)  (reset)
+ 93: 192.168.0.97:49046 - 192.168.0.12:443 (gc2gd)   10>   10<  (complete)  (reset)
+ 94: 192.168.0.97:49047 - 192.168.0.12:443 (ge2gf)   10>   10<  (complete)  (reset)
+ 95: 192.168.0.97:49048 - 192.168.0.12:443 (gg2gh)   11>   11<  (complete)  (reset)
+ 96: 192.168.0.97:49049 - 192.168.0.12:443 (gi2gj)   11>   11<  (complete)  (reset)
+ 97: 192.168.0.97:49052 - 192.168.0.12:443 (gk2gl)   10>    9<  (complete)  (reset)
+ 98: 192.168.0.97:49053 - 192.168.0.12:443 (gm2gn)   11>   11<  (complete)  (reset)
+ 99: 192.168.0.97:49054 - 192.168.0.12:443 (go2gp)   11>   11<  (complete)  (reset)
+100: 192.168.0.97:49055 - 192.168.0.12:443 (gq2gr)   11>   11<  (complete)  (reset)
+101: 192.168.0.97:49056 - 192.168.0.12:443 (gs2gt)   11>   11<  (complete)  (reset)
+102: 192.168.0.97:49057 - 192.168.0.12:443 (gu2gv)   11>   11<  (complete)  (reset)
+103: 192.168.0.97:49059 - 192.168.0.12:443 (gw2gx)   11>   11<  (complete)  (reset)
+104: 192.168.0.97:49060 - 192.168.0.12:443 (gy2gz)   11>    9<  (complete)  (reset)
+105: 192.168.0.97:49061 - 192.168.0.12:443 (ha2hb)   11>   11<  (complete)  (reset)
+106: 192.168.0.97:49062 - 192.168.0.12:443 (hc2hd)   11>   11<  (complete)  (reset)
+107: 192.168.0.97:49063 - 192.168.0.12:443 (he2hf)   11>   11<  (complete)  (reset)
+108: 192.168.0.97:49064 - 192.168.0.12:443 (hg2hh)   11>   11<  (complete)  (reset)
+109: 192.168.0.97:49065 - 192.168.0.12:443 (hi2hj)   11>   11<  (complete)  (reset)
+110: 192.168.0.97:49066 - 192.168.0.12:443 (hk2hl)   11>   11<  (complete)  (reset)
+111: 192.168.0.97:49067 - 192.168.0.12:443 (hm2hn)   11>   11<  (complete)  (reset)
+112: 192.168.0.97:49068 - 192.168.0.12:443 (ho2hp)   11>   11<  (complete)  (reset)
+113: 192.168.0.97:49069 - 192.168.0.12:443 (hq2hr)   11>   11<  (complete)  (reset)
+114: 192.168.0.97:49070 - 192.168.0.12:443 (hs2ht)   11>   11<  (complete)  (reset)
+115: 192.168.0.97:49071 - 192.168.0.12:443 (hu2hv)   11>   11<  (complete)  (reset)
+116: 192.168.0.97:49072 - 192.168.0.12:443 (hw2hx)   11>   11<  (complete)  (reset)
+117: 192.168.0.97:49073 - 192.168.0.12:443 (hy2hz)   11>   11<  (complete)  (reset)
+118: 192.168.0.97:49074 - 192.168.0.12:443 (ia2ib)   11>   11<  (complete)  (reset)
+119: 192.168.0.97:49075 - 192.168.0.12:443 (ic2id)   11>   11<  (complete)  (reset)
+120: 192.168.0.97:49076 - 192.168.0.12:443 (ie2if)   10>    9<  (complete)  (reset)
+121: 192.168.0.97:49079 - 192.168.0.12:443 (ig2ih)   11>   11<  (complete)  (reset)
+122: 192.168.0.97:49080 - 192.168.0.12:443 (ii2ij)   11>   11<  (complete)  (reset)
+123: 192.168.0.97:49081 - 192.168.0.12:443 (ik2il)   11>   11<  (complete)  (reset)
+124: 192.168.0.97:49082 - 192.168.0.12:443 (im2in)   11>   11<  (complete)  (reset)
+125: 192.168.0.97:49083 - 192.168.0.12:443 (io2ip)   11>   11<  (complete)  (reset)
+126: 192.168.0.97:49084 - 192.168.0.12:443 (iq2ir)   11>   11<  (complete)  (reset)
+127: 192.168.0.97:49085 - 192.168.0.12:443 (is2it)   11>   11<  (complete)  (reset)
+128: 192.168.0.97:49086 - 192.168.0.12:443 (iu2iv)   11>   11<  (complete)  (reset)
+129: 192.168.0.97:49087 - 192.168.0.12:443 (iw2ix)   11>   11<  (complete)  (reset)
+130: 192.168.0.97:49088 - 192.168.0.12:443 (iy2iz)   11>   11<  (complete)  (reset)
+131: 192.168.0.97:49089 - 192.168.0.12:443 (ja2jb)   10>   11<  (complete)  (reset)
+132: 192.168.0.97:49090 - 192.168.0.12:443 (jc2jd)   11>   11<  (complete)  (reset)
+133: 192.168.0.97:49091 - 192.168.0.12:443 (je2jf)   11>   11<  (complete)  (reset)
+134: 192.168.0.97:49093 - 192.168.0.12:443 (jg2jh)   11>   11<  (complete)  (reset)
+135: 192.168.0.97:49094 - 192.168.0.12:443 (ji2jj)   11>   11<  (complete)  (reset)
+136: 192.168.0.97:49095 - 192.168.0.12:443 (jk2jl)   11>   11<  (complete)  (reset)
+137: 192.168.0.97:49096 - 192.168.0.12:443 (jm2jn)   11>   11<  (complete)  (reset)
+138: 192.168.0.97:49097 - 192.168.0.12:443 (jo2jp)   11>   11<  (complete)  (reset)
+
+Warning : some extracted files are incomplete!
+          Please see -l output for more detail.
+
+
+We note that right away, one stream stands out:
+
+33: 192.168.0.97:20 - 192.168.0.12:1025 (bm2bn)   1356>  971<  (complete)
+
+Primarily because it is a larger stream, but those ports are interesting, and finally we can see it is a complete stream. 
+
+the file command doesn't help us much:
+
+file bm2bn_contents.dat 
+bm2bn_contents.dat: data
+
+We run strings on this structure, and we find a lot of random rubbish, but a few pages down we get some clues.
+
+oversubscribed distance tree
+incomplete distance tree
+empty distance tree with lengths
+incompatible version
+buffer error
+insufficient memory
+data error
+stream error
+file error
+stream end
+need dictionary
+1.1.3
+ deflate 1.1.3 Copyright 1995-1998 Jean-loup Gailly 
+ inflate 1.1.3 Copyright 1995-1998 Mark Adler 
+ 
+ So it's compressed!
+ 
+ Attempting to deflate the whole thing fails abyssmally. So we resort to searching for zlib streams in the file with a little help
+ from python. Basically, we iterate over every byte to see if we can find sections of the file that do not produce zlib errors. When
+ we find some sections of the file that are legitimate zlib streams. 
+ 
+ For this step, let's rename the file to compressed.bin
+ 
+ <insert Screenshot of python script>
+ 
+ Output of which is:
+ 
+bm2bn.bin
+(41576, 4098384)
+(1931471, 0)
+
+Well, let's carve out that compressed section shall we?
+
+dd if=bm2bn_contents.dat of=compressed.bin skip=41576 bs=1 count=4098384
+1889896+0 records in
+1889896+0 records out
+1889896 bytes (1.9 MB) copied, 2.62979 s, 719 kB/s
+
+Now we need to concatenate the magic string to make gzip think it's a valid file and decompress it:
+
+printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" | cat - compressed.bin | gzip -dc > decomp.bin
+
+Which does give us some errors which suggest we might have the length of our dd command wrong.
+
+However, we still get some sensible material out of the decompression. To see that, load it up in IDA, or 
+just use strings or xxd.
+
+For example, I love just running this on all kinds of embedded firmwares:
+
+xxd decomp.bin | grep -A 20 '42 4547 494e 2052 5341 2050 5249 5641' | less
+
+Which gives you nice little details such as:
+
+0036750: 2d42 4547 494e 2052 5341 2050 5249 5641  -BEGIN RSA PRIVA
+
+Wrapping this up though, it is possible to extract the private keys and the PEM. One key has a password, but the other
+can be used to decrypt SSL. If we load it into wireshark using port 443 IP 192.168.0.12 and protocol http, we can even use it 
+to see the session which preceded the firmware upload. This means we can confirm the key decrypts SSL traffic and we can even see 
+the user name and password for the device in packet 639.
+
+The astute among you will notice that the first part of the pcap-ng also contains a telnet session, which uses the same credentials.
+Some of you may argue that the SSL certificate can be changed, and while this is true, these certificates are the default state after
+the upgrade. Which means...you can always capture any new key that is uploaded to the machine if you have network access. New keys should
+be uploaded over a serial connection to avoid the capture of the new keys in cleartext, but ideally the keys should be generated per device, 
+and not be hardcoded.
+
+Just in case you don't believe me though, you can always go and have a look at the firmware yourself using these techniques.
+
+http://www.gedigitalenergy.com/app/Resources.aspx?prod=ml2400&type=7
+
+Incidentally, this issue just happens to affect Garrettcom Magnum 6k Switches as well. You can find their firmware here:
+
+http://www.garrettcom.com/techsupport/sw_downloads.htm
+
+The technique for finding the private key is identical. There are some other keys in there as well, but we like to leave some things to
+future bug-eaters like you dear reader.
+
+

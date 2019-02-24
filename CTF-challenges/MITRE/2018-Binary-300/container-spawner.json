@@ -1,0 +1,8 @@
+{
+    "image": "cwe191",
+    "port": 22,
+    "containerPort": "22/tcp",
+    "debug": false,
+    "rateLimit": 5000,
+    "timeout": 900000 
+}

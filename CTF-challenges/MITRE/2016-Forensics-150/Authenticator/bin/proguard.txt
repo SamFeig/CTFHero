@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:8
+-keep class org.ctf.authenticator.Authenticator { <init>(...); }
+
