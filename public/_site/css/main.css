@@ -32,6 +32,12 @@ body {
   font-family: "Fira Mono" !important;
   color: #abc0ca !important; }
 
+#main {
+    text-align: center;
+    /* background-color: white; */
+    /* color: black; */
+  }
+
 .page-stuff a {
   color: #03a4fb !important;
   text-decoration: none; }
