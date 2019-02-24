@@ -44,6 +44,14 @@ body {
 #page-content {
   padding-bottom: 4em; }
 
+#redir-button {
+  color: black;
+  background-color: #20C20E;
+  padding: 50px;
+  font-size: 40px;
+  border-radius: 10px;
+}
+
 .page-stuff {
   padding-top: 2em;
   padding-bottom: 5em; }
