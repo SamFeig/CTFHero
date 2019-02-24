@@ -1,0 +1,29 @@
+{
+  "name": "hacking4noobs",
+  "version": "1.0.0",
+  "description": "stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamFeig/Hacking4noobs.git"
+  },
+  "keywords": [
+    "node",
+    "ctf",
+    "stuff"
+  ],
+  "author": "Mark Wilmes, Sam Feig, Jay Heyward",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamFeig/Hacking4noobs/issues"
+  },
+  "homepage": "https://github.com/SamFeig/Hacking4noobs#readme",
+  "dependencies": {
+    "express": "*",
+    "redis": "*",
+    "express-handlebars": "*"
+  } 
+}
