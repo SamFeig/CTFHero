@@ -26,9 +26,20 @@ app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, 'views'))
 
 app.get('/', (request, response) => {
-  console.log("HERE")
-    response.sendfile(__dirname + "/CTF-Hero/index.html")
-  })
+  response.sendfile(__dirname + "/public/index.html")
+})
+
+app.get('/compete', (request, response) => {
+  response.sendfile(__dirname + "/public/_site/compete/index.html")
+})
+
+app.get('/archive', (request, response) => {
+  response.sendfile(__dirname + "/public/_site/archive/index.html")
+})
+
+app.get('/practice', (request, response) => {
+  response.sendfile(__dirname + "/public/_site/practice/index.html")
+})
 
 app.post('/getZipFile', (request,response) => {
   redis.getZipFile(request.body.key,response)

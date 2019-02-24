@@ -1,7 +1,7 @@
 {
   "name": "hacking4noobs",
   "version": "1.0.0",
-  "description": "stuff",
+  "description": "The ctfhero code!",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
@@ -15,7 +15,7 @@
     "ctf",
     "stuff"
   ],
-  "author": "Mark Wilmes, Sam Feig, Jay Heyward",
+  "author": "Mark Wilmes, Sam Feig, Jay Hayward",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SamFeig/Hacking4noobs/issues"
