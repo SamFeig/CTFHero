@@ -27,7 +27,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.get('/', (request, response) => {
   console.log("HERE")
-    response.sendfile("/CTF-Hero/index.html")
+    response.sendfile(__dirname + "/CTF-Hero/index.html")
   })
 
 app.post('/getZipFile', (request,response) => {
