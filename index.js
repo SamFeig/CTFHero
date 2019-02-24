@@ -27,9 +27,7 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.get('/', (request, response) => {
   console.log("HERE")
-    response.render('home', {
-      name: 'John'
-    })
+    response.sendfile("/CTF-Hero/index.html")
   })
 
 app.post('/getZipFile', (request,response) => {
@@ -51,22 +49,3 @@ app.listen(port, (err) => {
 
   console.log(`server is listening on ${port}`)
 })
-/*
-app.get('/', (request, response) => {
-    response.send('Hello from Express!')
-    throw new Error('oops')
-  })
-
-  app.use((err, request, response, next) => {
-    // log the error, for now just console.log
-    console.log(err)
-    response.status(500).send('Something broke!')
-  })
-
-app.listen(port, (err) => {
-  if (err) {
-    return console.log('something bad happened', err)
-  }
-
-  console.log(`server is listening on ${port}`)
-})*/
