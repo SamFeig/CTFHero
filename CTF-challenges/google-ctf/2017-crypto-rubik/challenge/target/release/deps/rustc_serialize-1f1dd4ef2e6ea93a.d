@@ -1,0 +1,10 @@
+/Users/sam/Desktop/HackCU/google-ctf/2017/quals/2017-crypto-rubik/challenge/target/release/deps/librustc_serialize-1f1dd4ef2e6ea93a.rlib: /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/lib.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/serialize.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/collection_impls.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/base64.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/hex.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/json.rs
+
+/Users/sam/Desktop/HackCU/google-ctf/2017/quals/2017-crypto-rubik/challenge/target/release/deps/rustc_serialize-1f1dd4ef2e6ea93a.d: /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/lib.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/serialize.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/collection_impls.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/base64.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/hex.rs /Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/json.rs
+
+/Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/lib.rs:
+/Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/serialize.rs:
+/Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/collection_impls.rs:
+/Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/base64.rs:
+/Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/hex.rs:
+/Users/sam/.cargo/registry/src/github.com-1ecc6299db9ec823/rustc-serialize-0.3.23/src/json.rs:
