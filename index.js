@@ -42,6 +42,12 @@ app.get('/archive', (request, response) => {
 app.get('/practice', (request, response) => {
   response.sendFile(__dirname + "/public/_site/practice/practice.html")
 })
+app.get('/practice/2015-crypto-300A', (request, response) => {
+  response.sendFile(__dirname + "/public/_site/practice/2015-crypto-300A.html")
+})
+app.get('/practice/2016-Forensics-150', (request, response) => {
+  response.sendFile(__dirname + "/public/_site/practice/2016-Forensics-150.html")
+})
 
 app.post('/getZipFile', (request,response) => {
   redis.getZipFile(request.body.key,response)
