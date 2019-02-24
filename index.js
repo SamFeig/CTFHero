@@ -27,20 +27,8 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.get('/', (request, response) => {
   console.log("HERE")
-    response.sendFile(__dirname + "/CTF-Hero/index.html")
-})
-
-app.get("/practice",(request,response) => {
-  response.sendFile(__dirname + "/CTF-Hero/_site/practice/index.html")
-})
-
-app.get("/compete",(request,response) => {
-  response.sendFile(__dirname + "/CTF-Hero/_site/compete/index.html")
-})
-
-app.get("/archive",(request,response) => {
-  response.sendFile(__dirname + "/CTF-Hero/_site/archive/index.html")
-})
+    response.sendfile(__dirname + "/CTF-Hero/index.html")
+  })
 
 app.post('/getZipFile', (request,response) => {
   redis.getZipFile(request.body.key,response)
