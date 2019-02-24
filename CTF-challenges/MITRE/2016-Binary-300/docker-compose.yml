@@ -1,0 +1,11 @@
+version: '2'
+services:
+  web:
+    build: ./
+    read_only: true
+    restart: unless-stopped
+    ports:
+      - "2222:22"
+      - "2000-2100:2000-2100"
+    tmpfs:
+      - /tmp

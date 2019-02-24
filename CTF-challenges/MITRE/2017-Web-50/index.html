@@ -1,0 +1,95 @@
+<html>
+<head>
+
+</head>
+<body style="background-color:PowderBlue;">
+
+
+
+<body>
+<div id="main-content">
+
+<center>
+<h1><b> <p style="font-family:verdana;color:red">Facts about Doggos</p></b></h1>
+<br>
+<br>
+<br>
+This is a picture of different kinds of doggos, there are at least TEN types discovered! 
+<br>
+<br>
+<br>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Collage_of_Nine_Dogs.jpg/1024px-Collage_of_Nine_Dogs.jpg" width="640" height="480" />
+<br>
+<br>
+<br>
+Most doggos have 4 legs
+<br>
+Many doggos have collars with their name or ID number on a tag. 
+<br>
+The most common tag number is, MCA{C0PYING_1z_d@ng3r0us}. no one really knows why this is such a popular number
+<br>
+Doggos make good friends
+ </center>
+</div>
+
+<div id="noIE">
+Please use a supported browser
+</div>
+
+</body>
+
+<script language="javascript">
+function addLink() {
+    //Get the selected text and append the extra info
+    var selection = window.getSelection();
+     var copytext = selection.toString();
+        copytext = copytext.replace("G_1z", "G_lz"); 
+        newdiv = document.createElement('div');
+		
+    //hide the newly created container
+    newdiv.style.position = 'absolute';
+    newdiv.style.left = '-99999px';
+
+    //insert the container, fill it with the extended text, and define the new selection
+    document.body.appendChild(newdiv);
+    newdiv.innerHTML = copytext;
+    selection.selectAllChildren(newdiv);
+
+    window.setTimeout(function () {
+        document.body.removeChild(newdiv);
+    }, 100);
+}
+
+
+   if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+   {
+     document.getElementById('main-content').style.display = 'none';
+     document.getElementById("main-content").style.visibility = "hidden";
+   }
+   else
+   {
+   document.getElementById('noIE').style.display = 'none';
+   document.getElementById("noIE").style.visibility = "hidden";  
+   document.addEventListener('copy', addLink);
+   }
+  
+   
+  
+</script>
+
+<noscript>
+No javascript? no flag for you! Enable javascript you paranoid n00b
+<style type="text/css">
+		#main-content { display:none; }
+		#noIE { display:none; }
+	</style>
+</noscript>
+
+
+
+
+
+
+</html>
+
+

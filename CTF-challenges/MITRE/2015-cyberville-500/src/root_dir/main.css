@@ -1,0 +1,103 @@
+
+/* Remove padding and margin */ 
+*  
+    { 
+    margin: 0; 
+    padding: 0; 
+    border: 0; 
+}
+
+body 
+    { 
+    background-color: #B7B7B7;     
+    text-align:center; 
+} 
+
+#wrapper 
+    {  
+    width: 700px;  
+    height: 720px;
+    text-align:left;   
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFF; 
+    color: #000;
+    font-family: Helvetica;
+    border: 1px solid #000;
+}
+
+#header {
+	text-align: center;
+	padding: 7px;
+	border-bottom: 1px solid #777;
+	background-color: #DBDBDB;
+}
+
+#entry {
+	width: 50%;
+	margin: 0 auto;
+	padding-top: 10px;
+	text-align: center;
+}
+
+#entry td {
+	padding: 3px;
+}
+
+input[type="text"], input[type="password"]{
+	padding: 4px;
+	border: 1px solid #BBB;
+	font-size: 18px;
+	height: 30px;
+}
+
+input[type="submit"]{
+	width: 100px;
+	height: 30px;
+	border: 1px solid #333;
+}
+
+input[type="submit"]:hover {
+	cursor: pointer;
+}
+
+#sidebar {
+	border-right: 1px solid #777;
+	border-bottom: 1px solid #777;
+	width: 180px;
+	height: 400px;
+	float: left;
+	background-color: #DBDBDB;
+}
+
+ul {
+	list-style-type: none;
+	padding: 20px;	
+}
+
+li {
+	padding-bottom: 10px;
+}
+
+#innerHeader {
+	text-align: center;
+}
+
+#content {
+	float: left;
+	padding: 30px;
+}
+
+#content table {
+	border: 1px solid #777;
+	background-color: #DBDBDB;
+}
+
+#content td {
+	padding: 10px;	
+	width: 136px;
+}

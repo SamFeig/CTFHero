@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iPOLiS NETWORK CAMERA VIEWER</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $("#next").click(function(){
+              // window.location.href = ":747/index.html";
+              alert('You do not have permission to visit the next camera!');
+          });
+          $("#next").on("contextmenu", function(){
+              alert('You do not have permission to visit the next camera!');
+              return false;
+          });
+      });
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        background-color: #333;
+      }
+
+      #header {
+        height: 60px;
+        background-color: #000;
+        padding-top: 10px;
+        padding-left: 10px;
+      }
+
+      .header_text{
+      }
+
+      #header_banner {
+      }
+
+      #wrapper {
+        width: 1024px;
+        margin: 0 auto;
+        min-height: 100%;
+        height: auto;
+      }
+
+      #content-live{
+        position: absolute; top: 80px; left: 50%; margin-right: -50%; transform: translate(-50%, 0%);
+        padding: 0;
+        background-color: #222;
+        min-height: 600px;
+        height: auto;
+        border: 1px solid #000;
+      }
+
+      h1 {
+        padding: 10px 8px;
+        margin: 0px;
+        color: #E74105;
+      }
+      .left {
+        position: relative;
+        float: left;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function setHref(){
+        document.getElementById('last').href = window.location.protocol + "//" + window.location.hostname + ":8999/404.html";
+      }
+    </script>
+  </head>
+
+  <body onload="setHref()">
+      <div id="header">
+        <img src="logo.png"/>
+        <span style="color: white; font-weight: bold;">*...7E4...*</span>
+      </div>
+      <div id="content-live">
+          <div class="left" style="padding-right: 10px;">
+            <div style="margin-top: 215px;">
+              <a id="last" href="" style="color: #fff;">
+                <img src="arrow-left.png" width="50px"/>
+                <span style="display: block; color: #fff;">Back</span>
+              </a>
+            </div>
+          </div>
+          <div class="left" style="padding-top: 10px;">
+            <iframe width="640" height="480" src="https://www.youtube.com/embed/QPJohD8o3V0?modestbranding&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="left" style="padding-left: 10px;">
+            <div style="margin-top: 215px;">
+              <a id="next" href="#" style="color: #fff;">
+                <img src="arrow-right.png" width="50px"/>
+                <span style="display: block;">Next</span>
+              </a>
+            </div>
+          </div>
+      </div>
+
+  </body>
+</html>

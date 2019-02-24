@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted area"
+AuthUserFile /usr/local/apache2/htdocs/.htpasswd
+require valid-user

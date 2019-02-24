@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WV-SP509</title>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="blur.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#blur").offset({top: $('#cam').offset().top, left: $('#cam').offset().left});
+            $("#blur").css("width", $('#cam').width().toString());
+            $("#blur").css("height", $('#cam').height().toString());
+        });
+        $(window).resize(function(){
+          $("#blur").offset({top: $('#cam').offset().top, left: $('#cam').offset().left});
+            $("#blur").css("width", $('#cam').width().toString());
+            $("#blur").css("height", $('#cam').height().toString());
+        });
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        background-image: url("tile.png");
+        background-repeat: repeat;
+      }
+
+      #header {
+        height: 30px;
+        background-color: #1F415C;
+      }
+
+      .header_text{
+      }
+
+      #header_banner {
+      }
+
+      #wrapper {
+        width: 1024px;
+        margin: 0 auto;
+        min-height: 100%;
+        height: auto;
+      }
+
+      #blur {
+        text-align: center;
+        background-color: rgba(255,255,255,0.98); 
+        position: absolute;
+        z-index: 100;
+      }
+
+      #content-live{
+        position: absolute; top: 50px; left: 60%; margin-right: -50%; transform: translate(-50%, 0%);
+        padding: 0;
+        background-color: #415B7F;
+        min-height: 600px;
+        height: auto;
+        border: 1px solid #000;
+      }
+
+      h1 {
+        font-family: Helvetica;
+      }
+
+      #sidebar {
+        width: 170px;
+        height: 600px;
+        background-color: #415B7F;
+        border: 1px solid #000;
+        position: absolute;
+        top: 50px;
+      }
+
+      .left {
+        position: relative;
+        float: left;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function setHref(){
+        document.getElementById('last').href = window.location.protocol + "//" + window.location.hostname + ":2825/index.html";
+      }
+    </script>
+  </head>
+
+  <body onload="setHref()">
+      <div id="header">
+        <img src="logo.png"/>
+      </div>
+      <div id="sidebar" class="left">
+      </div>
+      <div id="blur">
+          <h1>THIS VIDEO FEED IS RESTRICTED</h1>
+          <img src="lock.png" width="200"/>
+      </div>
+      <div id="content-live">
+          <div class="left" style="padding-right: 10px;">
+            <div style="margin-top: 215px;">
+              <a id="last" href="#" style="color: #fff;">
+                <img src="arrow-left.png" width="50px"/>
+                <span style="display: block; color: #fff;">Back</span>
+              </a>
+            </div>
+          </div>
+          <div class="left" style="padding-top: 10px;">
+            <iframe id="cam" width="640" height="480" src="https://www.youtube.com/embed/hKo7wiLevsQ?modestbranding&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div>
+          </div>
+      </div>
+
+  </body>
+</html>

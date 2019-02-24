@@ -1,0 +1,1 @@
+ErrorDocument 404 /usr/local/apache2/htdocs/404.html

@@ -1,0 +1,17 @@
+<div class="container">
+
+<nav class="navbar navbar-light bg-light justify-content-between">
+  <h1>Information about <%= @user.first %></h1>
+</nav>
+<br />
+<div class="container">
+<p><b>Full name:</b> <%= @user.first + " " + @user.last %></p>
+<p><b>Username:</b> <%= @user.username %></p>
+<p><b>Birthday:</b> <%= @user.birthday %></p>
+<p><b>Favorite Programming Language:</b> <%= @user.favorite_programming_language %></p>
+<p><b>Favorite Pokemon:</b> <%= @user.favorite_pokemon %></p>
+<p><b>Last sign in IP:</b> <%= @user.last_sign_in_ip %></p>
+
+<%= link_to 'Back', :back %>
+</div>
+</div>

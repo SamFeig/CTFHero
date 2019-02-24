@@ -1,0 +1,40 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+  web:
+    build: ./
+    command: /sbin/my_init
+    read_only: true
+    ports:
+      - "80:80"
+    links:
+      - db:postgres
+    environment:
+      - POSTGRES_PORT_5432_TCP_ADDR=postgres
+      - POSTGRES_PORT_5432_TCP_PORT=5432
+    restart: unless-stopped
+    tmpfs:
+      - /tmp
+      - /var/log/nginx
+      - /var/lib/nginx
+      - /var/lib/syslog-ng
+      - /run
+      - /dev/xconsole
+      - /home/app/webapp/public:noexec
+      - /home/app/webapp/.sass-cache:rw,noexec,nosuid,mode=1777
+      - /etc/container_environment
+      - /etc/service/syslog-forwarder/supervise
+      - /etc/service/syslog-ng/supervise
+      - /etc/service/nginx/supervise
+      - /etc/service/nginx-log-forwarder/supervise
+      - /etc/service/watchpublic/supervise
+      - /etc/service/sshd/supervise
+      - /etc/service/cron/supervise
+    volumes:
+      - /dev
+      - /home/app/webapp/log
+      - ./container_environment.sh:/etc/container_environment.sh
+      - ./container_environment.json:/etc/container_environment.json
+      - /home/app/webapp/tmp/cache/assets

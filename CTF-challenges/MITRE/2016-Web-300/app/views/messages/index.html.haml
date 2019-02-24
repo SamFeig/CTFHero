@@ -1,0 +1,6 @@
+%h1 Received Messages
+- @messages.each do |m|
+	%p Received from #{m.sending_user.name}
+	= m.title
+	%br/
+	= m.body

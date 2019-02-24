@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Credentials"
+    />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Username: "
+    />
+    <EditText
+        android:id="@+id/userField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="2" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Password: "
+    />
+    <EditText
+        android:id="@+id/passField"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="2" />
+
+    <Button android:id="@+id/button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Click To Authenticate">
+        
+    </Button>
+</LinearLayout>
+

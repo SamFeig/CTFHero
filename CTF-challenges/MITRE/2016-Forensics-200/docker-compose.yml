@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+     - "21:21"
+    volumes:
+     - .:/code
+    restart: always

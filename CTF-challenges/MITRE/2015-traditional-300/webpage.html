@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="radio">
+	<img src="hamtransparent.png" alt="A ham radio">
+</div>
+<audio controls>
+	<source src="morseflag.wav" type="audio/wav">
+</audio>
+<div id="cards">
+	<img src="6.png" id="myCard">
+	<img src="blank.png" id="discard">
+	<script>
+		var cards=['54','22','17','51','25','26','27','47','36','23','53','18','10','32',
+		'35','24','14','29','3','41','19','45','7','4','43','44','46','31','37','15','16',
+		'34','5','52','38','33','48','21','20','8','9','28','50','1','39','42','11','40',
+		'13','12','2','6','30','49',"blank"];
+		var index=0;
+		document.getElementById("myCard").src=cards[index]+".png";
+		document.getElementById("myCard").addEventListener("click",changeCard);
+		function changeCard(){
+			index=index+1;
+			if(index==55){
+				index=0;
+			}
+			if(index==0){
+				document.getElementById("discard").src="blank.png";
+			}
+			if(index==1){
+				document.getElementById("discard").src="back.png";
+			}
+			document.getElementById("myCard").src=cards[index]+".png";
+		}
+	</script>
+</div>
+</body>
+</html>

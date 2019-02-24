@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+
+    <script>
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see a blank space instead of the map, this
+// is probably because you have denied permission for location sharing.
+
+
+
+var map;
+
+function initialize() {
+  var mapOptions = {
+    zoom: 3
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	  
+  //This location has the third flag character
+  var mitreBedford=new google.maps.LatLng(42.504901,-71.236543)
+  var bedfordMessage='Mitre Bedford: Maybe you can get one of the employees to go here and give you the flag? No, that would be annoying to them.'
+  //This location has the sixth flag character
+  var notreDame=new google.maps.LatLng(45.5045,-73.5563)
+  var notreDameMessage="Notre-Dame Basilica: You could always ask your Canadian girlfriend to get the flag."
+  //This location has the eighth flag character
+  var parisVegas=new google.maps.LatLng(36.112890,-115.171282)
+  var parisVegasMessage="Paris Hotel in Las Vegas: I'm sure there are some DefCon stragglers who could help you out."
+  //This location has the seventh flag character
+  var antarctica=new google.maps.LatLng(-80,10)
+  var antarcticaMessage="You know researchers in Antarctica, right?"
+  //This location has the first flag character
+  var bermuda=new google.maps.LatLng(25,-74)
+  var bermudaMessage="I guess you could get here in a helicopter or boat... Isn't that in the Bermuda Triangle?"
+  //This location has the fifth flag character
+  var sydney=new google.maps.LatLng(-33.8587,151.2140)
+  var sydneyMessage="Sydney Opera House: You got any Australian mates?"
+  //This location has the second flag character
+  var northkorea=new google.maps.LatLng(39.1164, 125.8058)
+  var nkmessage="North Korea: I would strongly recommend NOT going here. Wonder how you could get the flag though..."
+  //This location has the fourth flag character
+  var moscow=new google.maps.LatLng(55.7500, 37.6167)
+  var moscowmessage="Moscow: In Soviet Russia, flag get YOU."
+  
+  var locationArray=[mitreBedford,notreDame,parisVegas,antarctica,bermuda,sydney,northkorea,moscow]
+  var locationNameArray=[bedfordMessage,notreDameMessage,parisVegasMessage,antarcticaMessage,bermudaMessage,sydneyMessage,nkmessage,moscowmessage]
+
+  var coord;
+  for (coord in locationArray) {
+    new google.maps.Marker({
+      position: locationArray[coord],
+      map: map,
+      title: locationNameArray[coord]
+    });
+  }
+  
+  // Try HTML5 geolocation
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude)
+	  var resp="";
+	  loadXMLDoc();
+	  if (resp=="")
+	  {
+		resp="You are not close enough to a waypoint to get a flag piece. Get closer!"
+	  }
+	  
+	  function loadXMLDoc()
+		{
+			var xmlhttp;
+			if (window.XMLHttpRequest)
+			{// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					resp=formatResponse(xmlhttp.responseText);
+				}
+			}
+			var lat=String(position.coords.latitude);
+			var lon=String(position.coords.longitude);
+			xmlhttp.open("GET",lat.replace("-","neg").replace(".","s")+"y"+lon.replace("-","neg").replace(".","s")+".txt",false);
+			xmlhttp.send();
+		}
+	  
+      var infowindow = new google.maps.InfoWindow({
+        map: map,
+        position: pos,
+        content: resp
+      });
+
+      map.setCenter(pos);
+    }, function() {
+      handleNoGeolocation(true);
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleNoGeolocation(false);
+  }
+}
+
+function createRequest() {
+  var result = null;
+  if (window.XMLHttpRequest) {
+    // FireFox, Safari, etc.
+    result = new XMLHttpRequest();
+    
+      result.overrideMimeType('text/plaintext'); // Or anything else
+    
+  }
+  else if (window.ActiveXObject) {
+    // MSIE
+    result = new ActiveXObject("Microsoft.XMLHTTP");
+  } 
+  else {
+    // No known mechanism -- consider aborting the application
+  }
+  return result;
+}
+
+function handleNoGeolocation(errorFlag) {
+  if (errorFlag) {
+    var content = 'Error: The Geolocation service failed.';
+  } else {
+    var content = 'Error: Your browser doesn\'t support geolocation.';
+  }
+
+  var options = {
+    map: map,
+    position: new google.maps.LatLng(60, 105),
+    content: content
+  };
+
+  var infowindow = new google.maps.InfoWindow(options);
+  map.setCenter(options.position);
+}
+
+function formatResponse(responseText){
+	var splittext=responseText.split("/")
+	return "You are "+splittext[0]+" Have a flag piece! "+dict[splittext[1]]
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+	var dict={};
+	dict["0"]="B";
+	dict["1"]="4";
+	dict["2"]="D";
+	dict["3"]="7";
+	dict["4"]="3";
+	dict["5"]="A";
+	dict["6"]="8";
+	dict["7"]="6";
+	dict["8"]="2";
+	dict["9"]="1";
+	dict["10"]="0";
+	dict["11"]="9";
+	dict["12"]="F";
+	dict["13"]="E";
+	dict["14"]="C";
+	dict["15"]="5";
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>

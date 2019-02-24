@@ -1,0 +1,13 @@
+
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Welcome {{ current_user.username }}</h1>
+    <h3>This is the members-only page.</h3>
+    {% if userdata %}
+    <h3>This is your data: {{ userdata.data }} </h3>
+    {% else %}
+    <h3>Sorry, your user dosn't have any data :(</h3>
+    {% endif %}
+    
+{% endblock %}
+

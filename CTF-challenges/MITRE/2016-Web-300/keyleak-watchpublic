@@ -1,0 +1,26 @@
+#!/bin/bash
+# monitor the public folder of a rails app for files created that are less than
+# 11 characters in length (index.html) and deletes them if they are seen.
+# Do not want competitors overwriting index.html and ruining the challenge.
+# Also enforces a 25 character length for files in the public directory.
+
+die () {
+    echo >&2 "$@"
+    exit 1
+}
+
+[ `whoami` == 'root' ] || die "You must be root to do this."
+
+if [ $(pidof -x keyleak-watchpublic| wc -w) -gt 2 ]; then
+    die "Cannot one more than 1 instance at a time."
+fi
+
+TARGET_DIR="/home/app/webapp/public"
+
+inotifywait -m -r --format '%f' --timefmt '%F %T' -e create $TARGET_DIR | while read NEWFILE
+  do
+    if [ "${#NEWFILE}" -lt 25 ]; then
+      rm $TARGET_DIR/$NEWFILE
+    fi
+  done
+exit 0

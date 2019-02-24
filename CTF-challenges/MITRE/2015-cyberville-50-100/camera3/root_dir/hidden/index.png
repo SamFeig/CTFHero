@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AXIS P1405-LE Network Camera</title>
+
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+
+      #header {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding: 5px 5px;
+        border: 1px solid #ccc;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        min-width: 778px;
+        position: absolute; left: 50%; margin-right: -50%; transform: translate(-50%, 0%);
+      }
+
+      .header_text{
+        color: #3366cc;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #fff;
+        font-family: verdana,arial,helvetica,sans-serif;
+        padding-left: 100px;
+      }
+
+      #header_banner {
+        position: relative;
+        z-index: 1;
+      }
+
+      #wrapper {
+        width: 1024px;
+        margin: 0 auto;
+        min-height: 100%;
+        height: auto;
+      }
+
+      #content-live{
+        position: absolute; top: 68px; left: 50%; margin-right: -50%; transform: translate(-50%, 0%);
+        padding: 0;
+        background-color: #FFF;
+        min-height: 600px;
+        height: auto;
+        border: 1px solid #CCC;
+
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+      }
+
+      h1 {
+        padding: 10px 8px;
+        margin: 0px;
+        color: #E74105;
+      }
+      .left {
+        position: relative;
+        float: left;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function setHref(){
+        document.getElementById('last').href = window.location.protocol + "//" + window.location.hostname + ":4171/index.html";
+        document.getElementById('next').href = window.location.protocol + "//" + window.location.hostname + ":2825/index.html";
+      }
+    </script>
+  </head>
+
+  <body onload="setHref()">
+      <div id="header">
+        <img src="axis.gif"/>
+        <span class="header_text">AXIS P1405-LE Network Camera</span>
+        <br/>
+        <span>*MCA-CD4 ...*</span>
+      </div>
+      <div id="content-live">
+          <div class="left" style="padding-right: 10px;">
+            <div style="margin-top: 215px; background-color: #fff;">
+              <a id="last" href="#">
+                <img src="arrow-left.png" width="50px"/>
+                <span style="display: block;">Back</span>
+              </a>
+            </div>
+          </div>
+          <div class="left" style="padding-top: 10px;">
+            <iframe width="640" height="480" src="https://www.youtube.com/embed/0s6wYMjJaz4?modestbranding&amp;autoplay=1&amp;rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <div class="left" style="padding-left: 10px;">
+            <div style="margin-top: 215px; background-color: #fff;">
+              <a id="next" href="#">
+                <img src="arrow-right.png" width="50px"/>
+                <span style="display: block;">Next</span>
+              </a>
+            </div>
+          </div>
+      </div>
+
+  </body>
+</html>

@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: 
+      context: .
+      args:
+        flag: MCA{give_me_my_session_back!}
+        adminPassword: brEchAquDraz5RaG3Bahune6Tez3b3uR
+    ports:
+      - "80:8080"
+    restart: unless-stopped
