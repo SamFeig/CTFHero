@@ -13,6 +13,8 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.use(express.static(__dirname + "/public/_site"));
+
 app.post("/", function (req, res) {
     console.log(req.body.user.name)
 });
@@ -26,19 +28,19 @@ app.set('view engine', '.hbs')
 app.set('views', path.join(__dirname, 'views'))
 
 app.get('/', (request, response) => {
-  response.sendFile(__dirname + "/front_dev/index.html")
+  response.sendFile(__dirname + "/public/_site/index.html")
 })
 
 app.get('/compete', (request, response) => {
-  response.sendFile(__dirname + "/front_dev/_site/compete/compete.html")
+  response.sendFile(__dirname + "/public/_site/compete/compete.html")
 })
 
 app.get('/archive', (request, response) => {
-  response.sendFile(__dirname + "/front_dev/_site/archive/index.html")
+  response.sendFile(__dirname + "/public/_site/archive/archive.html")
 })
 
 app.get('/practice', (request, response) => {
-  response.sendFile(__dirname + "/front_dev/_site/practice/index.html")
+  response.sendFile(__dirname + "/public/_site/practice/practice.html")
 })
 
 app.post('/getZipFile', (request,response) => {
