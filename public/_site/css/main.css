@@ -1,24 +1,42 @@
 .navbar-default {
   background: #093750 !important;
-  border: none !important; }
+  border: none !important;}
 
-.navbar-default .navbar-nav a {
-  color: #abc0ca !important; }
+.navbar-default .navbar-nav > li > a {
+  color: #abc0ca !important;
+  font-size: 30px;
+  float: left;
+  background-color: #093750;}
 
-.navbar-default .navbar-nav a:hover {
+.navbar-default .navbar-nav > li > a:hover {
+  color: #03a4fb !important;
+  background-color: 022335; }
+
+.navbar-default .navbar-nav > li > a:focus {
   color: #03a4fb !important; }
 
 .navbar-default .navbar-brand {
-  color: #abc0ca !important; }
+  color: #abc0ca !important;
+  background-color: #093750;
+  float: left;
+  font-size: 30px; }
 
 .footer-content {
   text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   padding: 0.5em; }
 
 body {
   background-color: #022335 !important;
   font-family: "Fira Mono" !important;
   color: #abc0ca !important; }
+
+#main {
+    text-align: center;
+    /* background-color: white; */
+    /* color: black; */
+  }
 
 .page-stuff a {
   color: #03a4fb !important;
@@ -32,9 +50,17 @@ body {
 #page-content {
   padding-bottom: 4em; }
 
+#redir-button {
+  color: black;
+  background-color: #20C20E;
+  padding: 50px;
+  font-size: 40px;
+  border-radius: 10px;
+}
+
 .page-stuff {
   padding-top: 2em;
-  padding-bottom: 5em; }bar
+  padding-bottom: 5em; }
 
 .jumbotron {
   background: #093750 !important; }
@@ -46,6 +72,7 @@ a {
 a:hover {
   color: #03a4fb !important;
   text-decoration: none !important;
+  background-color: #022335;
   border-bottom: 1px dotted #03a4fb; }
 
 .post-list {
@@ -90,6 +117,10 @@ code {
   border: none !important;
   border-radius: 0px !important; }
 
+  #content {
+    text-align: center;
+  }
+
 .page-tagline {
   font-size: 20px;
   text-align: center; }
@@ -117,10 +148,50 @@ code {
   letter-spacing: 2px; }
 
 .jumbotron {
-  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15); }
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15);
+  position: relative;}
 
 .navbar {
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15); }
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: absolute;
+  z-index: 1;
+  margin-top: 240px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 /**
  * Syntax highlighting styles

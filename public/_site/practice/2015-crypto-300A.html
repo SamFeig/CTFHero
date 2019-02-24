@@ -7,16 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta content="Hemang Kumar" property="og:site_name">
 
-  <meta content="Hemang Kumar" property="og:title">
+  <meta content="About" property="og:title">
 
 
-  <meta content="website" property="og:type">
+  <meta content="article" property="og:type">
 
 
   <meta content="<h3>Hello, world!</h3><h1>DevJournal</h1><h3>Awesome Jekyll Theme for Developers!</h3>Hope you like it!" property="og:description">
 
 
-  <meta content="http://localhost:4000/" property="og:url">
+  <meta content="http://localhost:4000/about/" property="og:url">
 
 
 
@@ -24,7 +24,7 @@
 
 
 
-  <title>CTF Hero</title>
+  <title>Practice</title>
   <meta name="description" content="<h3>Hello, world!</h3><h1>DevJournal</h1><h3>Awesome Jekyll Theme for Developers!</h3>Hope you like it!">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -43,8 +43,8 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-hQpvDQiCJaD2H465dQfA717v7lu5qHWtDbWNPvaTJ0ID5xnPUlVXnKzq7b8YUkbN" crossorigin="anonymous">
-  <link rel="canonical" href="http://localhost:4000/">
-  <!-- <link rel="alternate" type="application/rss+xml" title="What's new in cybersecurity?" href="http://www.ctfhero.com"/https://www.cshub.com/rss/news> -->
+  <link rel="canonical" href="http://localhost:4000/about/">
+  <link rel="alternate" type="application/rss+xml" title="Hemang Kumar" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -74,7 +74,6 @@
         <li><a href="/compete/">Compete</a></li>
         <!-- <li><a href="/archive/">Archive</a></li> -->
 
-
       </ul>
 
     <!--  <ul class="nav navbar-nav navbar-right">
@@ -86,27 +85,70 @@
 </nav>
 </section>
 
-<section>
-<section>
-  <div class="jumbotron">
+<!-- Sidebar -->
+  <div id="sidebar", class="sidenav" style="margin-top: 285px;">
+    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
+    <a href="/practice/2015-crypto-300A">2015-crypto-300A</a>
+    <a href="/practice/2016-Forensics-150">2016-Forensics-150</a>
+    <a href="/practice/2016-Grab-Bag-150">2016-Grab-Bag-150</a>
+    <a href="/practice/2018-crypto-flipping-bits">2018-crypto-flipping-bits</a>
+  </div>
+
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+  <!-- Sidebar Scripts-->
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.height = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+
+<div id="main">
+    <!-- Page Content -->
+    <!-- Title -->
+    <div class="jumbotron">
     <div class="container">
-      <h1>CTF Hero</h1><h3>Hacking for noobs by noobs for noobs</h3>
+      <h1 class="post-title-main" itemprop="name headline">Practice</h1>
+      <center><h3>2015 Crypto 300A</h3></center>
+    <center>  <h4 class="post-title-main" itemprop="name headline"></h4></center>
+    </div>
     </div>
 
-</div>
+  <!-- Main -->
+  <center>
+  <div id="main", class="container", style="text-allign: center;">
+  <script src="/scripts/database.js" type="text/javascript"></script>
+  <h3><a href="https://bit.ly/2SnzaRy" target="_blank">Download the project here</a></h3><br>
+    <center><h2>Part 1:</h2></center>
+      <div, class="container">
+        <p>If you examine the audio file, you will notice that the amplitude of the audio is either 1 or 0 every 1 second interval. This, along with the file name "Binary Time.mp3" leads us to notice that the apmlitude of the track alternates between 1 and 0 just like binary. When we translate the 1 second intervals into binary digits we get the message:</p>
+
+      <code class="inlinecode">
+       00110010011000110011010000110111001101000110010000110100011000100011010000110000
+      </code>
+      <br><br>
+       <p>This is the key for the zip files.</p>
+      </div>
+
+    <center><h2>Part 2:</h2></center>
+      <div, class="container", style="float: right; margin-right: 250px;">
+      <p>The guitar plucks note values (Example C note or A note) equals the letter in te hex key. The DTMF tone is equal to the number it represents on a phone system</p>
+
+      <code class="inlinecode">
+      Key: 2a 8d b3 e7 79 da e0 87
+      </code>
+
+       <p></p>
+      </div>
+</div></center>
+
+<!-- Footer -->
 </section>
-
-<section id="main">
-  <h1>About Us</h1>
-  <h3>CU Cybersecurity teaches offensive and defensive security to students of all experience levels. We hold talks and demonstrations so that people can learn about cybersecurity and the security industry. In addition, we participate in competitions and networking events with the Boulder InfoSec community.</h3><br>
-  <img src="https://cucybersecurityclub.com/assets/images/Cybersecurity_left.png" width="1300px" height="350px"></img>
-  <h3>Feel Free to contact us at:</h3>
-  <h3>cybersecurity@colorado.edu</h3>
-</section>
-
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
-  <div class="container footer-content" style="margin-top:10px">
+  <div class="container footer-content style = margin-top:10px;">
     Copyright CTFHero, CU Cybersecurity Club 2019
   </div>
 </nav>
