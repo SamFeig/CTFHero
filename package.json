@@ -26,6 +26,8 @@
     "express-handlebars": "*",
     "redis": "*",
     "redisscan": "^2.0.0",
-    "couchbase": "^2.6.3"
+    "couchbase": "^2.6.3",
+    "https":"^1.0.0",
+    "http": "*"
   }
 }
