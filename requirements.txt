@@ -1,1 +1,2 @@
-redis==3.2.0
+# redis==3.2.0
+couchbase==2.5.4
