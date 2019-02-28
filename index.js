@@ -9,6 +9,7 @@ const fs = require('fs')
 const app = express()
 // const port = 80
 
+/*
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/chain.pem', 'utf8');
@@ -18,6 +19,7 @@ const credentials = {
 	cert: certificate,
 	ca: ca
 };
+*/
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
@@ -82,15 +84,17 @@ app.post('/insertpath', (request,response) => {
 })
 
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer(credentials, app);
+//const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
 
+/*
 httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443');
 });
+*/
 
 /*
 app.listen(port, (err) => {
