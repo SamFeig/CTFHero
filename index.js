@@ -2,9 +2,22 @@ const express = require('express')
 const path = require('path')
 const exphbs = require('express-handlebars')
 const redis = require('./redisUtil')
+const https = require('https')
+const http = require('http')
+const fs = require('fs')
 
 const app = express()
-const port = 80
+// const port = 80
+
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/chain.pem', 'utf8');
+
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
@@ -14,6 +27,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public/_site"));
+
 
 app.post("/", function (req, res) {
     console.log(req.body.user.name)
@@ -67,6 +81,18 @@ app.post('/insertpath', (request,response) => {
   redis.setData(request.body.key,request.body.data,response)
 })
 
+const httpServer = http.createServer(app);
+const httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80, () => {
+	console.log('HTTP Server running on port 80');
+});
+
+httpsServer.listen(443, () => {
+	console.log('HTTPS Server running on port 443');
+});
+
+/*
 app.listen(port, (err) => {
   if (err) {
     return console.log('something bad happened', err)
@@ -74,3 +100,4 @@ app.listen(port, (err) => {
 
   console.log(`server is listening on ${port}`)
 })
+*/
