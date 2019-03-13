@@ -9,7 +9,7 @@ const fs = require('fs')
 const app = express()
 // const port = 80
 
-/*
+
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/cert.pem', 'utf8');
 const ca = fs.readFileSync('/etc/letsencrypt/live/ctfhero.com/chain.pem', 'utf8');
@@ -19,7 +19,7 @@ const credentials = {
 	cert: certificate,
 	ca: ca
 };
-*/
+
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({
@@ -83,18 +83,31 @@ app.post('/insertpath', (request,response) => {
   redis.setData(request.body.key,request.body.data,response)
 })
 
-const httpServer = http.createServer(app);
-//const httpsServer = https.createServer(credentials, app);
+/*
+app.get('/.well-known/acme-challenge/XwS9iUi_d_1KuzAzrJs5pWUSrVVKShM-Ow8UFtdeLms',(req,res) => {
+	res.send('XwS9iUi_d_1KuzAzrJs5pWUSrVVKShM-Ow8UFtdeLms.E_pzGqz4p2-3wQqolcItwArcR-57p9PCLZAFeLPHAxo')
+})
+
+app.get('/.well-known/acme-challenge/XsJYBwgFBn4r64SZsRWk2y2UFxh5QjyGNJG7FaW8wTY',(req,res) => {
+	res.send('XsJYBwgFBn4r64SZsRWk2y2UFxh5QjyGNJG7FaW8wTY.E_pzGqz4p2-3wQqolcItwArcR-57p9PCLZAFeLPHAxo')
+})
+*/
+//const httpServer = http.createServer(app);
+const httpServer = http.createServer(function(request,response) {
+	  response.writeHead(301, { "Location": "https://" + request.headers['host'] + request.url });
+	  response.end();
+});
+const httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
 
-/*
+
 httpsServer.listen(443, () => {
 	console.log('HTTPS Server running on port 443');
 });
-*/
+
 
 /*
 app.listen(port, (err) => {
