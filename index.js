@@ -83,9 +83,19 @@ app.post('/insertpath', (request,response) => {
   redis.setData(request.body.key,request.body.data,response)
 })
 
+/*
+app.get('/.well-known/acme-challenge/XwS9iUi_d_1KuzAzrJs5pWUSrVVKShM-Ow8UFtdeLms',(req,res) => {
+	res.send('XwS9iUi_d_1KuzAzrJs5pWUSrVVKShM-Ow8UFtdeLms.E_pzGqz4p2-3wQqolcItwArcR-57p9PCLZAFeLPHAxo')
+})
+
+app.get('/.well-known/acme-challenge/XsJYBwgFBn4r64SZsRWk2y2UFxh5QjyGNJG7FaW8wTY',(req,res) => {
+	res.send('XsJYBwgFBn4r64SZsRWk2y2UFxh5QjyGNJG7FaW8wTY.E_pzGqz4p2-3wQqolcItwArcR-57p9PCLZAFeLPHAxo')
+})
+*/
+//const httpServer = http.createServer(app);
 const httpServer = http.createServer(function(request,response) {
-  response.writeHead(301, { "Location": "https://" + request.headers['host'] + request.url });
-  response.end();
+	  response.writeHead(301, { "Location": "https://" + request.headers['host'] + request.url });
+	  response.end();
 });
 const httpsServer = https.createServer(credentials, app);
 
