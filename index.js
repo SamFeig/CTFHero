@@ -55,6 +55,10 @@ app.get('/archive', (request, response) => {
   response.sendFile(__dirname + "/public/_site/archive/archive.html")
 })
 
+app.get('/about', (request,response) => {
+  response.sendFile(__dirname + '/public/_site/about.html')
+})
+
 app.get('/practice', (request, response) => {
   response.sendFile(__dirname + "/public/_site/practice/practice.html")
 })
